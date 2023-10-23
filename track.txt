@@ -1,0 +1,18 @@
+vedio 1 => intro to backend => done
+vedio 2 => request and responce => done
+vedio 3 => MVC pattern => done
+vedio 4 => HTTP request => done 
+vedio 5 => setting mongo-db => 
+------------------------------------------------
+vedio 6 => connecting mongo-db => 
+// username:hashamsaleem75
+// password:Zhh2DH7JWyF79SMw
+
+vedio 7 => global error p1=> 
+vedio 8 => global error p2 => 
+vedio 9 => global error p3 => 
+------------------------------------------------
+vedio 10 => connecting to FE => 
+vedio 11 => adding new product => 
+vedio 12 => upload image to cloudinary => 
+------------------------------------------------
