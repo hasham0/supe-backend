@@ -5,6 +5,9 @@ import morgan from "morgan";
 import productRoutes from "./routes/Prod_Rou.js";
 import bodyParser from "body-parser";
 import { connectDb } from "./config/db_config.js";
+import { errorsMid } from "./middlewares/errorMid.js";
+import "dotenv/config.js";
+import cors from "cors";
 
 // store variable
 const app = express();
@@ -17,44 +20,15 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cors());
 
 // setting route
 app.use("/products", productRoutes);
 
 // error handling global custom middleware
-
-app.use((err, request, responce, next) => {
-  let copyErr = Object.assign({}, err);
-  // const copyErr = { ...error };
-  copyErr.message = err.message;
-
-  //note: validation handler
-  if (err.name === "ValidationError") {
-    const mess = Object.values(err.errors).map((item) => item.message);
-    copyErr = new Error(mess);
-  }
-
-  //note: duplicate value handler
-  if (err.code === 11000) {
-    const dupVal = `Duplicate:${Object.keys(err.keyValue)}`;
-    copyErr = new Error(dupVal);
-  }
-
-  //note: cast error handler
-  if (err.name === "CastError") {
-    const mess = `Reseource not found :invalid ${err.path}`;
-    copyErr = new Error(mess);
-  }
-
-  responce.json({
-    err: copyErr.message,
-  });
-});
-
-// port number
-const port = 8000;
+app.use(errorsMid);
 
 // listing port
-app.listen(port, () => {
-  console.log(`server running on port ${port}`);
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`server running on port `);
 });

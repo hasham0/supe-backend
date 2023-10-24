@@ -1,11 +1,8 @@
 import mongoose from "mongoose";
-
-// username and password
-const mongo_username = `hashamsaleem75`;
-const mongo_password = `Zhh2DH7JWyF79SMw`;
+import "dotenv/config.js";
 
 //db url connection
-const db_url = `mongodb+srv://${mongo_username}:${mongo_password}@cluster1.drzkuea.mongodb.net/?retryWrites=true&w=majority`;
+const db_url = `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@cluster1.drzkuea.mongodb.net/?retryWrites=true&w=majority`;
 
 // connection function
 export const connectDb = async () => {
