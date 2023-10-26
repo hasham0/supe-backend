@@ -1,13 +1,10 @@
 import mongoose from "mongoose";
 import "dotenv/config.js";
 
-//db url connection
-const db_url = `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@cluster1.drzkuea.mongodb.net/?retryWrites=true&w=majority`;
-
 // connection function
 export const connectDb = async () => {
   try {
-    const responce = await mongoose.connect(db_url, {
+    const responce = await mongoose.connect(process.env.DB_URL, {
       dbName: "E-com_db",
     });
     const { port } = responce.connection;
