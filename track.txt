@@ -1,5 +1,5 @@
 vedio 1 => intro to backend => done
-vedio 2 => request and responce => done
+vedio 2 => request and response => done
 vedio 3 => MVC pattern => done
 vedio 4 => HTTP request => done 
 vedio 5 => setting mongo-db => 

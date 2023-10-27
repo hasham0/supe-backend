@@ -7,7 +7,6 @@ import bodyParser from "body-parser";
 import { connectDb } from "./config/db_config.js";
 import { errorsMid } from "./middlewares/errorMid.js";
 import "dotenv/config.js";
-import cors from "cors";
 
 // store variable
 const app = express();
@@ -30,5 +29,5 @@ app.use(errorsMid);
 
 // listing port
 app.listen(process.env.SERVER_PORT, () => {
-  console.log(`server running on port `);
+  console.log(`server running on port ${process.env.SERVER_PORT}`);
 });

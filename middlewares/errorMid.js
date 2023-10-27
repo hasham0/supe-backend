@@ -1,26 +1,26 @@
-export const errorsMid = (err, request, responce, next) => {
-  let copyErr = Object.assign({}, err);
-  copyErr.message = err.message;
+export const errorsMid = (error, request, responce, next) => {
+  let copyErr = Object.assign({}, error);
+  copyErr.message = error.message;
 
   //note: validation handler
-  if (err.name === "ValidationError") {
-    const mess = Object.values(err.errors).map((item) => item.message);
+  if (error.name === "ValidationError") {
+    const mess = Object.values(error.errors).map((item) => item.message);
     copyErr = new Error(mess);
   }
 
   //note: duplicate value handler
-  if (err.code === 11000) {
-    const dupVal = `Duplicate:${Object.keys(err.keyValue)}`;
+  if (error.code === 11000) {
+    const dupVal = `Duplicate:${Object.keys(error.keyValue)}`;
     copyErr = new Error(dupVal);
   }
 
   //note: cast error handler
-  if (err.name === "CastError") {
-    const mess = `Reseource not found :invalid ${err.path}`;
+  if (error.name === "CastError") {
+    const mess = `Reseource not found :invalid ${error.path}`;
     copyErr = new Error(mess);
   }
 
   responce.json({
-    err: copyErr.message,
+    error: copyErr.message,
   });
 };

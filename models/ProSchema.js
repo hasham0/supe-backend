@@ -36,4 +36,5 @@ const prodSchema = new Schema({
 });
 
 // pass schema in model
-export const Product_col = mongoose.model(`products`, prodSchema);
+export const Product_col =
+  mongoose.model["products"] || mongoose.model(`products`, prodSchema);

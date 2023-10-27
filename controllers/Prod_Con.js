@@ -1,13 +1,13 @@
 import { Product_col } from "../models/ProSchema.js";
 
 // all products
-export const getAllProducts = async (request, responce, nexk) => {
+export const getAllProducts = async (request, response, nexk) => {
   try {
     const allProducts = await Product_col.find();
     if (!allProducts) {
       throw new Error("products not found");
     }
-    responce.json({
+    response.json({
       data: allProducts,
     });
   } catch (error) {
@@ -16,12 +16,12 @@ export const getAllProducts = async (request, responce, nexk) => {
 };
 
 //single product
-export const getProductById = async (request, responce, next) => {
+export const getProductById = async (request, response, next) => {
   try {
     const { id: pro_id } = request.params;
     const get_A_Prod = await Product_col.findById(pro_id);
     if (get_A_Prod) {
-      responce.json({
+      response.json({
         data: get_A_Prod,
       });
     } else {
@@ -33,27 +33,27 @@ export const getProductById = async (request, responce, next) => {
 };
 
 // add signle product
-export const createNewProduct = async (request, responce, next) => {
+export const createNewProduct = async (request, response, next) => {
   try {
     const newProd = request.body;
     const result = await Product_col.create(newProd);
-    responce.json({
+    response.json({
       message: "data added",
       data: result,
     });
   } catch (error) {
-    // responce.json({ error });
+    // response.json({ error });
     next(error);
   }
 };
 
 // update product
-export const updateAProduct = async (request, responce, next) => {
+export const updateAProduct = async (request, response, next) => {
   try {
     const pro_id = request.params.id;
     const updatedProd = request.body;
     const matchPro = await Product_col.findByIdAndUpdate(pro_id, updatedProd);
-    responce.json({
+    response.json({
       data: matchPro,
     });
   } catch (error) {
@@ -62,11 +62,11 @@ export const updateAProduct = async (request, responce, next) => {
 };
 
 //delete a product
-export const deleteProduct = async (request, responce, next) => {
+export const deleteProduct = async (request, response, next) => {
   try {
     const pro_id = request.params.id;
     const matchPro = await Product_col.findByIdAndDelete(pro_id);
-    responce.json({
+    response.json({
       data: matchPro,
     });
   } catch (error) {
