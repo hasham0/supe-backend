@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import productRoutes from "./routes/Prod_Rou.js";
+import usersRoutes from "./routes/Auth_Rou.js";
 import bodyParser from "body-parser";
 import { connectDb } from "./config/db_config.js";
 import { errorsMid } from "./middlewares/errorMid.js";
@@ -23,6 +24,7 @@ app.use(cors());
 
 // setting route
 app.use("/products", productRoutes);
+app.use("/users", usersRoutes);
 
 // error handling global custom middleware
 app.use(errorsMid);

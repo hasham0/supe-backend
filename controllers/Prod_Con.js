@@ -1,7 +1,7 @@
-import { Product_col } from "../models/ProSchema.js";
+import { Product_col } from "../models/Pro_Schema.js";
 
 // all products
-export const getAllProducts = async (request, response, nexk) => {
+export const getAllProducts = async (request, response, next) => {
   try {
     const allProducts = await Product_col.find();
     if (!allProducts) {
@@ -36,13 +36,16 @@ export const getProductById = async (request, response, next) => {
 export const createNewProduct = async (request, response, next) => {
   try {
     const newProd = request.body;
+    if (!newProd) {
+      next("empty body");
+    }
     const result = await Product_col.create(newProd);
+
     response.json({
       message: "data added",
       data: result,
     });
   } catch (error) {
-    // response.json({ error });
     next(error);
   }
 };
@@ -50,7 +53,10 @@ export const createNewProduct = async (request, response, next) => {
 // update product
 export const updateAProduct = async (request, response, next) => {
   try {
-    const pro_id = request.params.id;
+    const { id: pro_id } = request.params;
+    if (!pro_id) {
+      next("product not found");
+    }
     const updatedProd = request.body;
     const matchPro = await Product_col.findByIdAndUpdate(pro_id, updatedProd);
     response.json({
@@ -64,7 +70,10 @@ export const updateAProduct = async (request, response, next) => {
 //delete a product
 export const deleteProduct = async (request, response, next) => {
   try {
-    const pro_id = request.params.id;
+    const { id: pro_id } = request.params;
+    if (!pro_id) {
+      next("product not found");
+    }
     const matchPro = await Product_col.findByIdAndDelete(pro_id);
     response.json({
       data: matchPro,
