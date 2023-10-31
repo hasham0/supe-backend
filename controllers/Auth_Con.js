@@ -49,20 +49,24 @@ export const loginUser = async (request, response, next) => {
 };
 
 // update user
-export const updateUser = (request, response, next) => {
+export const updateUser = async (request, response, next) => {
   try {
-    const newUser = request.body;
-    response.json(newUser);
+    const { _id: userId } = request.params;
+    const updateData = request.body;
+    const foundUser = await Users_col.findById(userId);
+    console.log(foundUser);
+    response.json(foundUser);
   } catch (error) {
     next(error);
   }
 };
 
 // delete user
-export const deleteUser = (request, response, next) => {
+export const deleteUser = async (request, response, next) => {
   try {
-    const newUser = request.body;
-    response.json(newUser);
+    const { _id } = request.params;
+    const deleteUser = await Users_col.findByIdAndDelete(_id);
+    response.json(deleteUser);
   } catch (error) {
     next(error);
   }
