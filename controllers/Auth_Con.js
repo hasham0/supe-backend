@@ -16,8 +16,8 @@ export const registerUser = async (request, response, next) => {
   try {
     let newUser = request.body;
     newUser.password = await bcrypt.hash(newUser.password, 10);
-    const userMade = await Users_col.create(newUser);
-    response.json(userMade);
+    const createdUser = await Users_col.create(newUser);
+    response.json(createdUser);
   } catch (error) {
     next(error);
   }
