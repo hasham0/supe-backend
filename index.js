@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 import { connectDb } from "./config/db_config.js";
 import { errorsMid } from "./middlewares/errorMid.js";
 import "dotenv/config.js";
+import cookieParser from "cookie-parser";
 
 // store variable
 const app = express();
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 // setting route
 app.use("/products", productRoutes);

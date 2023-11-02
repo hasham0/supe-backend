@@ -14,7 +14,7 @@ const userSchema = new Schema(
       type: String,
       minLength: [3, "please provide atleast 3 characters"],
       maxLength: [20],
-      require: [true, "please provide the lastname name "],
+      require: [true, "please provide the last name  "],
     },
     email: {
       type: String,
@@ -31,11 +31,11 @@ const userSchema = new Schema(
       type: String,
       minLength: [5, "please provide atleast 5 characters"],
       maxLength: [500],
-      require: [true, "please provide the password name "],
+      require: [true, "please provide the password  "],
     },
   },
   {
-    timestamps: tue,
+    timestamps: true,
   }
 );
 
