@@ -33,6 +33,11 @@ const userSchema = new Schema(
       maxLength: [500],
       require: [true, "please provide the password  "],
     },
+    role: {
+      type: String,
+      enum: ["admin", "teacher", "student", "user"],
+      default: "user",
+    },
   },
   {
     timestamps: true,

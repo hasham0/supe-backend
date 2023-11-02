@@ -13,6 +13,23 @@ export const allUser = async (request, response, next) => {
   }
 };
 
+// get user by id
+export const userByID = async (request, response, next) => {
+  try {
+    const { _id: userId } = request.params;
+    if (userId) {
+      next(new Error("id is required"));
+    }
+    const foundUser = await Users_col.findById(userId);
+    if (!foundUser) {
+      next(new Error("user not found"));
+    }
+    response.json(foundUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
 // register new user
 export const registerUser = async (request, response, next) => {
   try {
