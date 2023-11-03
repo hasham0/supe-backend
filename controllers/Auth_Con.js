@@ -7,6 +7,9 @@ import "dotenv";
 export const allUser = async (request, response, next) => {
   try {
     const allUsers = await Users_col.find({});
+    if (!allUser) {
+      next(new Error("users not found"));
+    }
     response.json(allUsers);
   } catch (error) {
     next(error);
@@ -62,7 +65,7 @@ export const loginUser = async (request, response, next) => {
       next(new Error("password not matched"));
     }
 
-    // authentication and authorization
+    //note: authentication and authorization
     const token = Jwt.sign({ foundUser: foundUser }, process.env.SECRATE_KEY);
     response
       .cookie("auth_Token", token, {

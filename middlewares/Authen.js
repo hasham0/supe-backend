@@ -3,11 +3,13 @@ import "dotenv";
 
 // checking authentication
 export const isAuthentication = async (request, response, next) => {
-  const userToken = request.cookies.auth_Token;
-  if (!userToken) {
+  if (!request.cookies.hasOwnProperty("auth_Token")) {
     next(new Error("please login to acces this resource"));
+    return;
   }
-  const decode = await jwt.verify(userToken, process.env.SECRATE_KEY);
+
+  const userToken = request.cookies.auth_Token;
+  const decode = jwt.verify(userToken, process.env.SECRATE_KEY);
   request.user = decode.foundUser;
   next();
 };

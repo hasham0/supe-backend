@@ -17,10 +17,10 @@ router.route("/allUsers").get(isAuthentication, allUser);
 router.route("/signleUser/:_id").get(isAuthentication, userByID);
 
 // register new user
-router.route("/register").post(isAuthentication, registerUser);
+router.route("/register").post(registerUser);
 
 // login user
-router.route("/login").post(isAuthentication, loginUser);
+router.route("/login").post(loginUser);
 
 // update user
 router.route("/updateUser/:_id").put(isAuthentication, updateUser);

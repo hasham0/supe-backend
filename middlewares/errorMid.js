@@ -20,6 +20,12 @@ export const errorsMid = (error, request, responce, next) => {
     copyErr = new Error(mess);
   }
 
+  //note: json token handler
+  if ((error.name = "JsonWebTokenError")) {
+    const tokenNotFound = `jwt token not found please provide`;
+    copyErr = new Error(tokenNotFound);
+  }
+
   responce.json({
     error: copyErr.message,
   });
