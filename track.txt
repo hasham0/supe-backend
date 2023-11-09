@@ -7,12 +7,19 @@ vedio 5 => setting mongo-db =>
 vedio 6 => connecting mongo-db => 
 // username:hashamsaleem75
 // password:Zhh2DH7JWyF79SMw
-
 vedio 7 => global error p1=> 
 vedio 8 => global error p2 => 
 vedio 9 => global error p3 => 
-------------------------------------------------
 vedio 10 => connecting to FE => 
+------------------------------------------------
 vedio 11 => adding new product => 
 vedio 12 => upload image to cloudinary => 
+vedio 13 =>  authentication part 1
+vedio 14 =>  authentication part 2
+vedio 15 =>  authentication part 3
 ------------------------------------------------
+vedio 16 =>  authentication part 4
+vedio 17 =>  authentication part 5
+vedio 18 =>  authentication part 6
+vedio 19 =>  authentication part 7
+vedio 20 =>  authentication part 8
