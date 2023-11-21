@@ -2,18 +2,19 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import "dotenv/config.js";
+
 import productRoutes from "./routes/Prod_Rou.js";
 import usersRoutes from "./routes/Auth_Rou.js";
-import bodyParser from "body-parser";
 import { connectDb } from "./config/db_config.js";
 import { errorsMid } from "./middlewares/errorMid.js";
-import "dotenv/config.js";
-import cookieParser from "cookie-parser";
 
 // store variable
 const app = express();
 
-// connection db func
+// connection db function
 connectDb();
 
 // setting middleware

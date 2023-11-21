@@ -7,9 +7,12 @@ export const isAuthentication = async (request, response, next) => {
     next(new Error("please login to acces this resource"));
     return;
   }
-
+  //note: verifying jwt token
   const userToken = request.cookies.auth_Token;
   const decode = jwt.verify(userToken, process.env.SECRATE_KEY);
+  const { payload } = decode;
+  console.log(payload);
+
   request.user = decode.foundUser;
   next();
 };

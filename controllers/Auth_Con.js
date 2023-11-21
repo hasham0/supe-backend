@@ -37,6 +37,7 @@ export const userByID = async (request, response, next) => {
 export const registerUser = async (request, response, next) => {
   try {
     let newUser = request.body;
+    //note: encrypting password
     newUser.password = await bcrypt.hash(newUser.password, 10);
     const createdUser = await Users_col.create(newUser);
     response.json(createdUser);
@@ -45,7 +46,7 @@ export const registerUser = async (request, response, next) => {
   }
 };
 
-// login  user
+// sign_in/log_in  user
 export const loginUser = async (request, response, next) => {
   try {
     const { email, password } = request.body;
@@ -60,12 +61,13 @@ export const loginUser = async (request, response, next) => {
     if (!foundUser) {
       next(new Error("user not found"));
     }
+    //note: comparing password
     const authUser = await bcrypt.compare(password, foundUser.password);
     if (!authUser) {
       next(new Error("password not matched"));
     }
 
-    //note: authentication and authorization
+    //note: assigning jwt token
     const token = Jwt.sign({ foundUser: foundUser }, process.env.SECRATE_KEY);
     response
       .cookie("auth_Token", token, {
