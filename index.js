@@ -15,7 +15,7 @@ import { errorsMid } from "./middlewares/errorMid.js";
 const app = express();
 
 // connection db function
-connectDb();
+(() => connectDb())();
 
 // setting middleware
 app.use(morgan("dev"));

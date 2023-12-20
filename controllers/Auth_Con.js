@@ -10,7 +10,7 @@ export const allUser = async (request, response, next) => {
     if (!allUser) {
       next(new Error("users not found"));
     }
-    response.json(allUsers);
+    response.json({ message: "all users", users: allUsers });
   } catch (error) {
     next(error);
   }
@@ -20,14 +20,17 @@ export const allUser = async (request, response, next) => {
 export const userByID = async (request, response, next) => {
   try {
     const { _id: userId } = request.params;
-    if (userId) {
+    if (!userId) {
       next(new Error("id is required"));
     }
-    const foundUser = await Users_col.findById(userId);
+    const foundUser = await Users_col.findById({ _id: userId });
     if (!foundUser) {
       next(new Error("user not found"));
     }
-    response.json(foundUser);
+    response.json({
+      message: "user found",
+      user: foundUser,
+    });
   } catch (error) {
     next(error);
   }
@@ -40,7 +43,7 @@ export const registerUser = async (request, response, next) => {
     //note: encrypting password
     newUser.password = await bcrypt.hash(newUser.password, 10);
     const createdUser = await Users_col.create(newUser);
-    response.json(createdUser);
+    response.json({ message: "user created", user: createdUser });
   } catch (error) {
     next(error);
   }
@@ -63,19 +66,21 @@ export const loginUser = async (request, response, next) => {
     }
     //note: comparing password
     const authUser = await bcrypt.compare(password, foundUser.password);
+    console.log(`auth user ${authUser}`);
     if (!authUser) {
       next(new Error("password not matched"));
     }
 
     //note: assigning jwt token
     const token = Jwt.sign({ foundUser: foundUser }, process.env.SECRATE_KEY);
+
     response
       .cookie("auth_Token", token, {
         expires: new Date(Date.now() + 360000),
         httpOnly: true,
         secure: false,
       })
-      .json({ message: `user matched => ${authUser}` });
+      .json({ message: `user matched`, verified: authUser });
   } catch (error) {
     next(error);
   }
@@ -88,7 +93,13 @@ export const updateUser = async (request, response, next) => {
     const updateData = request.body;
     const foundUser = await Users_col.findById(userId);
     console.log(foundUser);
-    response.json(foundUser);
+    if (!foundUser) {
+      next(new Error("user not found"));
+    }
+    const updateUser = await Users_col.findByIdAndUpdate(userId, updateData, {
+      new: true,
+    });
+    response.json({ message: "date updated", update: updateUser });
   } catch (error) {
     next(error);
   }
@@ -99,7 +110,7 @@ export const deleteUser = async (request, response, next) => {
   try {
     const { _id } = request.params;
     const deleteUser = await Users_col.findByIdAndDelete(_id);
-    response.json(deleteUser);
+    response.json({ message: "user deleted", user: deleteUser });
   } catch (error) {
     next(error);
   }

@@ -14,7 +14,7 @@ import {
 router.route("/allUsers").get(isAuthentication, allUser);
 
 // signle user
-router.route("/signleUser/:_id").get(isAuthentication, userByID);
+router.route("/singleUser/:_id").get(isAuthentication, userByID);
 
 // register new user
 router.route("/register").post(registerUser);

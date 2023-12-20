@@ -10,20 +10,27 @@ vedio 6 => connecting mongo-db => done
 vedio 7 => global error p1=> done
 vedio 8 => global error p2 => done
 vedio 9 => global error p3 => done
-vedio 10 => connecting to FE => 
-vedio 11 => adding new product => 
-vedio 12 => upload image to cloudinary => 
+vedio 10 => connecting to FE => done
+vedio 11 => adding new product => done
+vedio 12 => upload image to cloudinary => done
 ------------------------------------------------
-vedio 13 =>  authentication part 1
-vedio 14 =>  authentication part 2
-vedio 15 =>  authentication part 3
-vedio 16 =>  authentication part 4
-vedio 17 =>  authentication part 5
-vedio 18 =>  authentication part 6
+vedio 13 =>  authentication part 1 => done
+vedio 14 =>  authentication part 2 => done
+vedio 15 =>  authentication part 3 => done
+vedio 16 =>  authentication part 4 => done
+vedio 17 =>  authentication part 5 => done 
+vedio 18 =>  authentication part 6 => done
 ------------------------------------------------
-vedio 19 =>  authentication part 7
-vedio 20 =>  authentication part 8
-vedio 21 =>  authentication part 7
-vedio 22 =>  authentication part 8
-vedio 23 =>  authentication part 7
-vedio 24 =>  authentication part 8
+vedio 19 =>  authorization part 7 =>
+vedio 20 =>  JWT error part 8 =>
+vedio 21 =>  implement logout part 9 =>
+vedio 22 =>  pagination part 10 =>
+vedio 23 =>  handlre responce part 11 =>
+vedio 24 =>  authentication part 12 =>
+vedio 25 =>  =>
+vedio 26 =>  =>
+vedio 27 =>  =>
+vedio 28 =>  =>
+vedio 29 =>  =>
+vedio 30 =>  =>
+vedio 31 =>  =>

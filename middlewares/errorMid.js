@@ -25,7 +25,6 @@ export const errorsMid = (error, request, responce, next) => {
     const tokenNotFound = `jwt token not found please provide`;
     copyErr = new Error(tokenNotFound);
   }
-
   responce.json({
     error: copyErr.message,
   });

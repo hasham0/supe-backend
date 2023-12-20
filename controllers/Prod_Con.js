@@ -18,7 +18,7 @@ export const getAllProducts = async (request, response, next) => {
 //single product
 export const getProductById = async (request, response, next) => {
   try {
-    const { id: pro_id } = request.params;
+    const { _id: pro_id } = request.params;
     const get_A_Prod = await Product_col.findById(pro_id);
     if (get_A_Prod) {
       response.json({
@@ -53,12 +53,14 @@ export const createNewProduct = async (request, response, next) => {
 // update product
 export const updateAProduct = async (request, response, next) => {
   try {
-    const { id: pro_id } = request.params;
+    const { _id: pro_id } = request.params;
     if (!pro_id) {
       next("product not found");
     }
     const updatedProd = request.body;
-    const matchPro = await Product_col.findByIdAndUpdate(pro_id, updatedProd);
+    const matchPro = await Product_col.findByIdAndUpdate(pro_id, updatedProd, {
+      new: true,
+    });
     response.json({
       data: matchPro,
     });
@@ -70,7 +72,7 @@ export const updateAProduct = async (request, response, next) => {
 //delete a product
 export const deleteProduct = async (request, response, next) => {
   try {
-    const { id: pro_id } = request.params;
+    const { _id: pro_id } = request.params;
     if (!pro_id) {
       next("product not found");
     }
